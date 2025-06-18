@@ -1,0 +1,99 @@
+{% extends "Home/base.html" %}
+{% load static %}
+{% block body %}
+
+    <div class="page-wrapper">
+      <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Assign Teacher</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Assign Teacher</li>
+              </ul>
+            </div>
+            <div class="col-auto text-right float-right ml-auto">
+              <a href="{% url 'teacher_list' %}" class="btn btn-outline-primary mr-2"><i class="fas fa-arrow-left"></i> Back</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card card-table">
+              <div class="card-body">
+
+                <h4 class="card-title">Assign Teacher to Grade and Section</h4>
+
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                  {% endfor %}
+                {% endif %}
+
+                <form method="post">
+                  {% csrf_token %}
+
+                  <div class="form-group">
+                    <label for="teacher">Select Teacher:</label>
+                    <select name="teacher_id" class="form-control" required>
+                      <option value="">-- Choose Teacher --</option>
+                      {% for teacher in teachers %}
+                        <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="grade">Select Grade:</label>
+                    <select name="grade_id" class="form-control" required>
+                      <option value="">-- Choose Grade --</option>
+                      {% for grade in grades %}
+                        <option value="{{ grade.id }}">{{ grade.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="section">Select Section:</label>
+                    <select name="section_id" class="form-control" required>
+                      <option value="">-- Choose Section --</option>
+                      {% for section in sections %}
+                        <option value="{{ section.id }}">{{ section.name }} ({{ section.grades.name }})</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Assign</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>{{ teacher.name }} - {{ teacher.grades.name }} / {{ teacher.sections.name }}</p>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Copyright © 2020 Dreamguys.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatables/datatables.min.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+{% endblock %}
