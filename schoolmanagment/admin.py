@@ -1,10 +1,6 @@
-
 from django.contrib import admin
-
+from .models import *
 # Register your models here.
-from django.contrib import admin
-from .models import Parent, Student
-
 @admin.register(Parent)
 class ParentAdmin(admin.ModelAdmin):
     list_display = ('father_name', 'mother_name', 'father_mobile', 'mother_mobile')
@@ -18,4 +14,16 @@ class StudentAdmin(admin.ModelAdmin):
     list_filter = ('gender', 'student_class', 'section')
     readonly_fields = ('student_image',)  # Optional: makes the image field read-only
 
-# Register your models here.
+# for teacher section 
+@admin.register(Grade)
+class GradeAdmin(admin.ModelAdmin):
+    list_display=('id','name')
+@admin.register(Section)
+class SectionAdmin(admin.ModelAdmin):
+    list_display=('id','name')
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    list_display =('teacher_id','name','gender','date_of_birth','mobile','joining_date','qualification','exprience','address','city','state','zip_code','country')
+    list_filter=('gender','city','state')
+    search_fields=('teacher_id','joining_date')

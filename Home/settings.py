@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'schoolmanagment',
     'school',
-    'student',
+    #'student',
     'home_auth',
-    'teacher'
+    #'teacher'
 ]
 
 MIDDLEWARE = [
