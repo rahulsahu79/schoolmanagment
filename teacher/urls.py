@@ -16,11 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include("school.urls")),
-    path('student/', include("student.urls")),
-    path('authentication/', include("home_auth.urls")),
-    path('teacher/',include("teacher.urls")),
+    
+path('',views.teacher_list,name = "teacher_list"),
+path('add/',views.add_teacher,name="add-teacher"),
+path('edit/<str:teacher_id>/',views.edit_teacher , name="edit_teacher"),
+path('view/<str:teacher_id>/',views.view_teacher, name="view_teacher"),
+path('delete/<str:teacher_id>/',views.delete_teacher,name="delete_teacher"),
+path('assign-teacher/', views.assign_teacher, name='assign_teacher')
+
+
+
 ]
