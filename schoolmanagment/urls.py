@@ -22,14 +22,14 @@ urlpatterns = [
 
   
   # studetn section 
-  path('', views.student_list,name="student_list"),
+  path('student/', views.student_list,name="student_list"),
   path('add/', views.add_student,name="add_student"),
   path('students/<str:slug>/', views.view_student, name='view_student'),
   path('edit/<str:slug>/', views.edit_student, name='edit_student'),
   path('delete/<str:slug>/', views.delete_student, name='delete_student'),
   
   #teacher section
-  path('teacher',views.teacher_list,name = "teacher_list"),
+  path('teacher/',views.teacher_list,name = "teacher_list"),
   path('teacher/add/',views.add_teacher,name="add-teacher"),
   path('teacher/edit/<str:teacher_id>/',views.edit_teacher , name="edit_teacher"),
   path('teacher/view/<str:teacher_id>/',views.view_teacher, name="view_teacher"),
